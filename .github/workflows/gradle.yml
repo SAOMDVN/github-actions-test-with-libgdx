@@ -35,4 +35,4 @@ jobs:
         git push origin master
         git add html/build/dist
         git commit -m "Automated build for HTML"
-        git subtree push --prefix html/build/dist origin gh-pages -f
+        git push origin `git subtree split --prefix html/build/dist origin`:gh-pages --force
