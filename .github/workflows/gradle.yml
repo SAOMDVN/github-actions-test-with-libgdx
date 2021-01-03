@@ -26,7 +26,7 @@ jobs:
       run: ./gradlew desktop:dist
     - name: Build HTML with Gradle
       run: ./gradlew html:dist
-    - name: Push desktop/build/libs and html/build/dist to gh-pages branches
+    - name: Push desktop/build/libs to master and html/build/dist to gh-pages branch
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"
@@ -35,4 +35,4 @@ jobs:
         git push origin master
         git add html/build/dist
         git commit -m "Automated build for HTML"
-        git subtree push --prefix html/build/dist origin gh-pages
+        git subtree push --prefix html/build/dist origin gh-pages -f
