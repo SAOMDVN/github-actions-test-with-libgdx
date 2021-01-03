@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -26,3 +26,13 @@ jobs:
       run: ./gradlew desktop:dist
     - name: Build HTML with Gradle
       run: ./gradlew html:dist
+    - name: Push desktop/build/libs and html/build/dist to gh-pages branches
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add desktop/build/libs
+        git commit -m "Automated build for Desktop"
+        git push origin master
+        git add html/build/dist
+        git commit -m "Automated build for HTML"
+        git subtree push --prefix html/build/dist origin gh-pages
